@@ -1,6 +1,8 @@
 # Full Mint Website
 Based on [this tutorial](https://www.youtube.com/watch?v=ynFNLBP2TPs&list=WL&index=1) from [EdRoh](https://www.youtube.com/c/EdRohDev)
 
+*Section h2's below based on YouTube video chapters
+
 ## Set up
 - Create react app
 - Install hardhat `npm i -D hardhat`
@@ -52,4 +54,84 @@ Contract has now been deployed to Goerli testnet
 ## Creating a Full Mint Website
 - Go to `/artifacts/contracts/RoboPunksNFT.json`. Copy content and paste into a new file in `/src/RoboPunksNFT.json` We connect to our contract via the abi, this json file is what allows for that.
 - Downloaded assets(images) from provided link
-- 
+- Created `NavBar` and `MainMint` components and added `App.js`. Have not added css yet.
+    - `NavBar.js`: Contains the navigation elements, connect button, and wallet connection functionality. Connect button conditionally renders based on whether the user has connected or not.
+    - `MainMint.js`: If user is not connected to site, this component shows "You must be connected to mint.". Once connected the component has a + and - button, an input for how many NFTs to mint, and a button for minting.
+
+### Important Takeaway
+Here's how the front-end is communicating with the smart contract:
+```js
+async function handleMint() {
+        if (window.ethereum) {
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const signer = provider.getSigner();
+            // Above, we've created a provider object and from the provider object...
+            // we've created a signer object
+            // Below, we create an instance of Contract and passed it...
+            // the contract address, the contract abi, and the signer(user)...
+            const contract = new ethers.Contract(
+                roboPunksNFTAddress,
+                roboPunksNFT.abi,
+                signer
+            );
+            try {
+                // We're able to access the mint function from the smart contract...
+                // because the contract object has access to the roboPunksNFT.abi
+                const response = await contract.mint(BigNumber.from(mintAmount));
+                console.log('response: ', response);
+            } catch (err) {
+                console.log('error: ', err)
+            }
+        }
+    }
+```
+In summation: JavaScript accesses smart contract functionality through contract ABI.
+
+## Give Mint Website Some Life With CSS Styling
+- The entire page is covered in an `.overlay` class which, through the `opacity` property gives an otherwise darker .gif background a lighter veneer
+- Chakra UI allows me to import Chakra components to easily write CSS in my `.js` files. E.G. from `NavBar` component:
+```js
+<Flex justify='space-between' align='center' padding='30px'>
+    {/* left side - social media icons */}
+    <Flex justify='space-around' width='40%' padding='0 75px'>
+        <Link href='https://www.linkedin.com/in/damon-pickett/'>
+            <Image src={Facebook} boxSize='42px' margin='0 15px' alt='facebook' />
+        </Link>
+        <Link href='https://twitter.com/Damon_Pickett'>
+            <Image src={Twitter} boxSize='42px' margin='0 15px' alt='twitter' />
+        </Link>
+        <Link href='damon.pickett@gmail.com'>
+            <Image src={Email} boxSize='42px' margin='0 15px' alt='email' />
+        </Link>
+    </Flex>
+```
+- With the exceptions of `.App`, `*`, `body`, `.overlay`, and `.moving-background`, all CSS is written within the JSX
+
+### Important Takeaway
+At first, the white text against the moving background was difficult to read as lighter parts of the picture scrolled beneath. This changed after adding `textShadow`. I.E. Text shadow can make text more readable.
+
+## Fully Built a Front-End Mint Website
+- Navigated to [contract](https://goerli.etherscan.io/address/0x267416f0BDD563a9E7A48D4D6E553D08256C1899#writeContract) and set `isPublicMintEnabled` to true. 
+- Whenever you make a function call that requires an Ether amount you need to pass that in as a value. This had been overlooked inititally in the tutorial but we added it at the end:
+```js
+async function handleMint() {
+        if (window.ethereum) {
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const signer = provider.getSigner();
+            const contract = new ethers.Contract(
+                roboPunksNFTAddress,
+                roboPunksNFT.abi,
+                signer
+            );
+            try {
+                const response = await contract.mint(BigNumber.from(mintAmount), {
+                    // Gotta add this value
+                    value: ethers.utils.parseEther((0.02 * mintAmount).toString())
+                });
+                console.log('response: ', response);
+            } catch (err) {
+                console.log('error: ', err)
+            }
+        }
+    }
+```
