@@ -1,6 +1,13 @@
 # Full Mint Website
 Based on [this tutorial](https://www.youtube.com/watch?v=ynFNLBP2TPs&list=WL&index=1) from [EdRoh](https://www.youtube.com/c/EdRohDev)
 
+## Tech Stack
+- React.js (front-end)
+- Solidity (smart contract)
+- Ethers.js (JavaScript library for interacting with the Ethereum Blockchain)
+- Hardhat (Provides a development environment for Ethereum blockchain applications)
+- Chakra UI (Provides styling elements that can be written in JSX)
+
 ## Function
 This app allows a user to connect their Ethereum wallet and mint a RoboPunk NFT, an ERC721 token. The cost is 0.02 ETH. A max supply of 1000 has been set and users are limited to 3 RP's (RoboPunkNFT tokens) per wallet. From `RoboPunksNFT.sol`:
 ```sol
