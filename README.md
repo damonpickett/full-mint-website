@@ -1,6 +1,78 @@
 # Full Mint Website
 Based on [this tutorial](https://www.youtube.com/watch?v=ynFNLBP2TPs&list=WL&index=1) from [EdRoh](https://www.youtube.com/c/EdRohDev)
 
+## Function
+This app allows a user to connect their Ethereum wallet and mint a RoboPunk NFT, an ERC721 token. The cost is 0.02 ETH. A max supply of 1000 has been set and users are limited to 3 RP's (RoboPunkNFT tokens) per wallet. From `RoboPunksNFT.sol`:
+```sol
+constructor() payable ERC721('RoboPunks', 'RP') {
+        mintPrice = 0.02 ether;
+        totalSupply = 0;
+        maxSupply = 1000;
+        maxPerWallet = 3;
+        // set withdraw wallet address
+    }
+```
+
+To connect the user's wallet, this app uses [ethers.js](https://docs.ethers.io/v5/) in the following function in the [`NavBar`](src/NavBar.js) component:
+```js
+async function connectAccount() {
+        if (window.ethereum){
+            const accounts = await window.ethereum.request({
+                method: "eth_requestAccounts",
+            });
+            setAccounts(accounts);
+        }
+    }
+```
+This function is activated by the 'Connect' button.
+
+Once the user's wallet is connected, the `MainMint` component conditionally renders the buttons and input for incrementing or decrementing the user's number of mints (max 3), and the button to mint. Here is the code for the increment button:
+```js
+const handleIncrement = () => {
+        if (mintAmount >= 3) return;
+        setMintAmount(mintAmount + 1);
+    };
+```
+
+Here is the code for the 'Mint Now' button:
+```js
+async function handleMint() {
+        if (window.ethereum) {
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const signer = provider.getSigner();
+            const contract = new ethers.Contract(
+                roboPunksNFTAddress,
+                roboPunksNFT.abi,
+                signer
+            );
+            try {
+                const response = await contract.mint(BigNumber.from(mintAmount), {
+                    value: ethers.utils.parseEther((0.02 * mintAmount).toString())
+                });
+                console.log('response: ', response);
+            } catch (err) {
+                console.log('error: ', err)
+            }
+        }
+    }
+```
+This function represents the most educational aspect of the tutorial for me. From this function we can see how we use ethers.js to bundle the necessary data (contract address, contract abi, and signer) and use that info to call the `mint()` function in our deployed smart contract. However, what I don't understand at this time is why we pass 2 arguments to the mint function above, when in our smart contract the mint function only takes 1 argument for the quantity.
+
+Upon minting a token users can confirm on the [Goerli TestNet](https://goerli.etherscan.io/) the number of RP tokens they have purchased.
+
+The smart contract for this app has been deployed to the [Goerli TestNet](https://goerli.etherscan.io/)
+
+The contract can be confirmed [here](https://goerli.etherscan.io/address/0x267416f0BDD563a9E7A48D4D6E553D08256C1899)
+
+Users can acquire mock ETH to use this app [here](https://goerlifaucet.com/)
+
+## Style
+The background is a `background-image: url` that links to a gif. The app is overlayed with a sheet of white with an opacity of 0.85. The effect is to brighten the picture.
+
+We use the pixelated fonts Press Start 2P, and VT323. Both from [Google Fonts](https://fonts.google.com/). The text is given a `box-shadow` effect which helps to keep it readable as the scrolling background presents changing background colors.
+
+---
+# Tutorial Breakdown
 *Section h2's below based on YouTube video chapters
 
 ## Set up

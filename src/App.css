@@ -39,4 +39,47 @@ body {
   background-position: 40% 40%;
 }
 
+.instructions-button {
+  background-color: #D6517D;
+  border-radius: 5px;
+  box-shadow: 0 2px 2px 1px #0F0F0F;
+  color: white;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 15px;
+  margin: 0 15px;
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-canvas {
+  width: 500px;
+  background-color: #D6517D;
+  color: white;
+  border-radius: 25px;
+  padding: 28px 32px 24px;
+  font-family: inherit;
+  box-shadow: 0 2px 2px 1px #0F0F0F;
+}
+
+.modal-body {
+  text-align: left;
+}
+
+.modal-body a{
+  text-decoration: none;
+  color: rgb(66, 245, 239);
+}
+
 

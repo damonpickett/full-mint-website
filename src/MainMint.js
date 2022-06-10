@@ -131,7 +131,8 @@ const MainMint = ({ accounts, setAccounts }) => {
                 color='#D6517D'
             >
                 <Link 
-                href="https://www.flaticon.com/free-icons/folder" 
+                href="https://www.flaticon.com/free-icons/folder"
+                target='_blank'
                 title="folder icons"
                 textDecoration='none'
                 color='rgb(66, 245, 239)'
