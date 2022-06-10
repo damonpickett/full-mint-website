@@ -12,7 +12,7 @@ const Modal = (props) => {
                     <h3>Instructions</h3>
                  </div>
                 <div className="modal-body">
-                    <p>Connect your Ethereum wallet via the 'Connect Wallet' button in the top right corner</p>
+                    <p>Connect your Ethereum wallet via the 'Connect' button in the top right corner</p>
                     <p>Connect your wallet to the Goerli Testnet</p>
                     <p>You'll need mock Ethereum tokens to interact with the blockchain. You can collect mock tokens from the <a href='https://goerlifaucet.com/' target='_blank' rel='noreferrer'>Goerli Faucet</a></p>
                     <p>Once your wallet is connected you'll be able to choose the number of tokens you'd like to mint. The maximum is 3</p>
