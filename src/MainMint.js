@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ethers, BigNumber } from 'ethers';
-import { Box, Button, Flex, Input, Text } from '@chakra-ui/react'; 
+import { Box, Button, Flex, Input, Link, Text } from '@chakra-ui/react'; 
 import roboPunksNFT from './RoboPunksNFT.json';
 
 const roboPunksNFTAddress = '0x267416f0BDD563a9E7A48D4D6E553D08256C1899'
@@ -122,6 +122,45 @@ const MainMint = ({ accounts, setAccounts }) => {
                     You must be connected to mint.
                 </Text>
             )}
+            <Text
+                marginTop='70px'
+                fontSize='30px'
+                letterSpacing='-5.5%'
+                fontFamily='VT323'
+                textShadow='0 3px #000000'
+                color='#D6517D'
+            >
+                <Link 
+                href="https://www.flaticon.com/free-icons/folder" 
+                title="folder icons"
+                textDecoration='none'
+                color='rgb(66, 245, 239)'
+                >
+                    Folder icon created by Freepik - Flaticon
+                </Link>
+            </Text>
+            <Text
+                marginTop='30px'
+                fontSize='30px'
+                letterSpacing='-5.5%'
+                fontFamily='VT323'
+                textShadow='0 3px #000000'
+                color='#D6517D'
+            >
+            <Link 
+                target="_blank" 
+                href="https://icons8.com/icon/21276/octocat"
+                textDecoration='none'
+                color='rgb(66, 245, 239)'
+            >Octocat</Link> icon by <Link 
+            target="_blank" 
+            href="https://icons8.com"
+            textDecoration='none'
+            color='rgb(66, 245, 239)'
+            >
+                Icons8
+            </Link>
+            </Text>
             </Box>
         </Flex>
     )

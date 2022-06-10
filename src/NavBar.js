@@ -1,8 +1,9 @@
 import React from "react";
 import { Box, Button, Flex, Image, Link, Spacer } from '@chakra-ui/react';
-import Facebook from './assets/social-media-icons/facebook_32x32.png'
+import Linkedin from './assets/social-media-icons/linkedin.png'
 import Twitter from './assets/social-media-icons/twitter_32x32.png'
-import Email from './assets/social-media-icons/email_32x32.png'
+import Portfolio from './assets/social-media-icons/portfolio.png'
+import Github from './assets/social-media-icons/github2.png'
 
 const NavBar = ({ accounts, setAccounts }) => {
     const isConnected = Boolean(accounts[0]);
@@ -20,14 +21,17 @@ const NavBar = ({ accounts, setAccounts }) => {
         <Flex justify='space-between' align='center' padding='30px'>
             {/* left side - social media icons */}
             <Flex justify='space-around' width='40%' padding='0 75px'>
-                <Link href='https://www.linkedin.com/in/damon-pickett/'>
-                    <Image src={Facebook} boxSize='42px' margin='0 15px' alt='facebook' />
+                <Link href='https://www.linkedin.com/in/damon-pickett/' target='_blank'>
+                    <Image src={Linkedin} boxSize='42px' margin='0 15px' alt='facebook' />
                 </Link>
-                <Link href='https://twitter.com/Damon_Pickett'>
+                <Link href='https://twitter.com/Damon_Pickett' target='_blank'>
                     <Image src={Twitter} boxSize='42px' margin='0 15px' alt='twitter' />
                 </Link>
-                <Link href='damon.pickett@gmail.com'>
-                    <Image src={Email} boxSize='42px' margin='0 15px' alt='email' />
+                <Link href='https://damonpickett.github.io/portfolio/' target='_blank'>
+                    <Image src={Portfolio} boxSize='42px' margin='0 15px' alt='portfolio' />
+                </Link>
+                <Link href='https://github.com/damonpickett/full-mint-website' target='_blank'>
+                    <Image src={Github} boxSize='42px' margin='0 15px' alt='github' />
                 </Link>
             </Flex>
 
