@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/full-mint-website/static/css/main.95ad79fc.css",
-    "main.js": "/full-mint-website/static/js/main.7cb5053f.js",
+    "main.js": "/full-mint-website/static/js/main.9937e8bd.js",
     "static/js/787.b3d42841.chunk.js": "/full-mint-website/static/js/787.b3d42841.chunk.js",
     "static/media/parallax-bg.gif": "/full-mint-website/static/media/parallax-bg.a753668321d10848110d.gif",
     "index.html": "/full-mint-website/index.html",
     "main.95ad79fc.css.map": "/full-mint-website/static/css/main.95ad79fc.css.map",
-    "main.7cb5053f.js.map": "/full-mint-website/static/js/main.7cb5053f.js.map",
+    "main.9937e8bd.js.map": "/full-mint-website/static/js/main.9937e8bd.js.map",
     "787.b3d42841.chunk.js.map": "/full-mint-website/static/js/787.b3d42841.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.95ad79fc.css",
-    "static/js/main.7cb5053f.js"
+    "static/js/main.9937e8bd.js"
   ]
 }
